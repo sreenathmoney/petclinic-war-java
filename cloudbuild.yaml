@@ -1,7 +1,26 @@
 Steps:
-- name: 'gcr.io/cloud-builders/npm'
+# Build the latest version.
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--tag=gcr.io/$PROJECT_ID/mvn'
+  - '.'
+# Minimally invoke Maven.
+- name: 'gcr.io/$PROJECT_ID/mvn'
+  args: ['--version']
+
+# Run example builds.
+- name: 'gcr.io/$PROJECT_ID/mvn'
   args: ['install']
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'test:unit']
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'build']
+  dir: 'xxx/xx'
+
+- name: "gcr.io/cloud-builders/mvn"
+  args: 
+    [
+      'appengine:update',
+      '-Dappengine.appId=xxx',
+      '-Dappengine.version=xxx',
+      '-Dbookshelf.bucket=xxx'
+    ]
+
+- images: 'gcr.io/$PROJECT_ID/mvn'
