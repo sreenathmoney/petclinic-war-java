@@ -3,14 +3,14 @@ Steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=gcr.io/$PROJECT_ID/mvn'
+  - '--tag=gcr.io/$tset-276308/mvn'
   - '.'
 # Minimally invoke Maven.
-- name: 'gcr.io/$PROJECT_ID/mvn'
+- name: 'gcr.io/$tset-276308/mvn'
   args: ['--version']
 
 # Run example builds.
-- name: 'gcr.io/$PROJECT_ID/mvn'
+- name: 'gcr.io/$tset-276308/mvn'
   args: ['install']
   dir: 'xxx/xx'
 
@@ -23,4 +23,4 @@ Steps:
       '-Dbookshelf.bucket=xxx'
     ]
 
-- images: 'gcr.io/$PROJECT_ID/mvn'
+- images: 'gcr.io/$tset-276308/mvn'
